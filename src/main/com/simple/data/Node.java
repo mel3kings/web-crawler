@@ -1,7 +1,10 @@
 package com.simple.data;
 
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+
 import java.util.List;
 
+@JsonPropertyOrder({ "title", "uri", "nodes"})
 public class Node {
     private String URI;
     private String title;
@@ -30,4 +33,5 @@ public class Node {
     public void setNodes(List<Node> nodes) {
         this.nodes = nodes;
     }
+
 }
