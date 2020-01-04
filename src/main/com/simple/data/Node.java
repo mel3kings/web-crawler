@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import java.util.List;
 
-@JsonPropertyOrder({ "title", "uri", "nodes"})
+@JsonPropertyOrder({"title", "uri", "nodes"})
 public class Node {
     private String URI;
     private String title;

@@ -34,7 +34,7 @@ public class ApplicationController {
         Queue<Node> queue = new LinkedList<>();
         queue.add(a);
 
-        Node result = webCrawler.BFS(queue, a, 1);
+        Node result = webCrawler.WebCrawl(queue, a, 1);
 
 //        ArrayList<Node> list = new ArrayList();
 //        list.add(a);

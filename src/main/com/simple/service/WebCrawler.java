@@ -2,7 +2,8 @@ package com.simple.service;
 
 import com.simple.data.Node;
 
+import java.util.Queue;
 
 public interface WebCrawler {
-    Node BFS(java.util.Queue<Node> queue, Node currentNode, int level);
+    Node WebCrawl(Queue<Node> queue, Node currentNode, int level);
 }
