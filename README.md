@@ -25,6 +25,4 @@ or `mvn spring-boot:run` in the commandline if you are in the same directory of 
 - We are limiting the number of sites/depth of the crawler to avoid infinite loops
 - We are using Breadth-Depth Search via a Queue to crawl through the sites
 - We are using Sets to keep a unique list of urls already visited
-
-
-
+- Only site visited will have Title

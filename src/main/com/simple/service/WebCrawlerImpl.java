@@ -11,18 +11,21 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.*;
 import java.io.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 @Service
 public class WebCrawlerImpl implements WebCrawler {
     private Set<String> visitedURLs = new HashSet<>();
-    public static int MAX_DEPTH = 2;
+    public static int MAX_DEPTH = 10;
     private static int MAX_NODES_VISIT = 20;
-    private static int processed = 0;
+    private int processed = 0;
+    private static String URL_REGEX = "^(https?|http?|ftp|file)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]";
 
-    public Node WebCrawl(java.util.Queue<Node> queue, Node currentNode, int level) {
+    public Node webCrawl(java.util.Queue<Node> queue, Node currentNode, int level) {
         if (level > MAX_DEPTH) {
-            return WebCrawl(queue, queue.poll(), --level);
+            return webCrawl(queue, queue.poll(), --level);
         }
         if (queue.isEmpty()) {
             return currentNode;
@@ -47,7 +50,7 @@ public class WebCrawlerImpl implements WebCrawler {
             processNode.setNodes(associate);
         }
 
-        return WebCrawl(queue, processNode, ++level);
+        return webCrawl(queue, processNode, ++level);
     }
 
     public StringBuffer getHtmlBody(Node processNode) {
@@ -89,7 +92,7 @@ public class WebCrawlerImpl implements WebCrawler {
         return links.parallelStream()
                 .map(a -> a.attr("href"))
                 .filter(href -> href.length() > 0)
-                .filter(WebCrawlerImpl::checkValidUrl)
+                .filter(this::checkValidUrl)
                 .collect(Collectors.toSet());
     }
 
@@ -105,11 +108,14 @@ public class WebCrawlerImpl implements WebCrawler {
         return title.html();
     }
 
-    public static boolean checkValidUrl(String uri) {
-        if (uri.contains("http")) {
-            return true;
+    public boolean checkValidUrl(String URL) {
+        try {
+            Pattern patt = Pattern.compile(URL_REGEX);
+            Matcher matcher = patt.matcher(URL);
+            return matcher.matches();
+        } catch (RuntimeException e) {
+            e.printStackTrace();
         }
         return false;
     }
-
 }

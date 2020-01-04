@@ -5,9 +5,11 @@ import com.simple.service.WebCrawlerImpl;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.Set;
 
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 public class WebCrawlerTest {
     private WebCrawler webCrawler;
@@ -55,7 +57,7 @@ public class WebCrawlerTest {
         assert (linksSet.size() == 0);
     }
 
-     @Test
+    @Test
     public void testBlankUrlinHref() {
         StringBuffer html = new StringBuffer("<html> <body><p><ul><li><a href=''>foo</a></li></ul></p> </body></html>");
         Set<String> linksSet = webCrawler.getLinks(html);
@@ -86,5 +88,25 @@ public class WebCrawlerTest {
         html = null;
         linksSet = webCrawler.getLinks(html);
         assert (linksSet.size() == 0);
+    }
+
+    @Test
+    public void testValidHtmls() {
+        String[] validURLs = {
+                "http://www.google.com.au/history/optout?hl=en",
+                "https://mail.google.com/mail/?tab=wm",
+                "https://www.google.com.au/intl/en/about/products?tab=wh",
+                "https://www.google.com.au/imghp?hl=en&tab=wi",
+                "https://maps.google.com.au/maps?hl=en&tab=wl",
+                "https://drive.google.com/?tab=wo",
+                "https://www.youtube.com/?gl=AU&tab=w1",
+                "https://play.google.com/store/paymentmethods",
+                "https://play.google.com/artists",
+                "https://play.google.com/store/books",
+                "https://play.google.com/wishlist",
+        };
+        for (String url : validURLs) {
+            assertTrue(webCrawler.checkValidUrl(url));
+        }
     }
 }
