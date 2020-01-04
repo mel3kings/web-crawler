@@ -4,37 +4,27 @@
 Author: Melchor Tatlonghari
 
 ## Instructions
-1. Replace application.properties with correct jdbc url before starting spring-boot
-(if no database is installed, follow instructions on the bottom on Docker setup.)
-2. run `mvn clean install` in same directory to build the sources before running
-3. you can run the application via running `MainApplication.java` in your IDE or `mvn spring-boot:run` in the 
-commandline if you are in the same directory of the pom
+1. run `mvn clean install` in same directory to build the sources before running
+2. you can run the application via running `MainApplication.java` in your IDE 
+or `mvn spring-boot:run` in the commandline if you are in the same directory of the pom
 
 ### Documentation
-|  Parameter 	|   Value	|  Optional 	|   Format	|   	
-|---	|---	|---	|---		|
-| medallions  	|   list of id of the taxi cab	| false  	| `List<String>`  	   	|
-| date  	|  travel dates based on pickup date for specified cab 	|   false	|   YYYY-MM-DD	   	|
-| fetchNewData  	|   ignore cache and fetch from database  	|   	true|  boolean 	   	|
 
-### POST Request
-
-### GET Request
+#### GET Request
 
 - http://localhost:8080/ - health check
 
 
-
 ## Technologies/Libraries/Frameworks used
 - Java 8
--  Lombok - removes boilerplate code from java like setters and getters, as well as loggers through annotations
-(Builder, AllArgsConstructor, Data, NoArgConstructor, Slf4j)
 - Spring/SpringBoot - Framework for lightweight API service
 - Maven - to handle all dependencies and builds involved
 - Jackson - for validating incoming request and response. Serialization/Deserialization of json requests
 
 ### Known Issues/Technical Notes
+- We are limiting the number of sites/depth of the crawler to avoid infinite loops
+- We are using Breadth-Depth Search via a Queue to crawl through the sites
+- We are using Sets to keep a unique list of urls already visited
 
-#### Logging
 
 
