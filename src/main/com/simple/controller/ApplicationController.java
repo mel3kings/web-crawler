@@ -16,8 +16,8 @@ public class ApplicationController {
     @Autowired
     private WebCrawler webCrawler;
 
-    @RequestMapping(value = "/get", method = RequestMethod.GET)
-    public Node get(@RequestParam("url") String url) {
+    @RequestMapping(value = "/webcrawl", method = RequestMethod.GET)
+    public Node webCrawl(@RequestParam("url") String url) {
         Node root = new Node();
         root.setURI(url);
         Queue<Node> queue = new LinkedList<>();
