@@ -1,4 +1,4 @@
-package com.simple.api;
+package com.simple.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;

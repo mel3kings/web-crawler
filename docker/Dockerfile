@@ -1,7 +1,0 @@
-FROM mysql
-
-ENV MYSQL_DATABASE=local \
-    MYSQL_PASSWORD=test
-
-
-EXPOSE 3306

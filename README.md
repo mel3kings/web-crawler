@@ -9,7 +9,7 @@ Author: Melchor Tatlonghari
 3. Run `mvn spring-boot:run` in the commandline to start the application
 
 OR
-1. you can run the application via running `MainApplication.java` in your IDE 
+1. you can run the application via running `MainApplication.java` in your IDE  
 
 ### Documentation
 #### GET Request
@@ -24,7 +24,7 @@ OR
 - Jackson - for validating incoming request and response. Serialization/Deserialization of json requests
 
 ### Known Issues/Technical Notes    
-- We are limiting the number of sites/depth of the crawler to avoid infinite loops
-- We are using Breadth-Depth Search via a Queue to crawl through the sites
-- We are using Sets to keep a unique list of urls already visited
+- I am limiting the number of sites/depth of the crawler to avoid infinite loops
+- I am using Breadth-Depth Search via a Queue to crawl through the sites
+- I am using Sets to keep a unique list of urls already visited
 - Only site visited will have Title
